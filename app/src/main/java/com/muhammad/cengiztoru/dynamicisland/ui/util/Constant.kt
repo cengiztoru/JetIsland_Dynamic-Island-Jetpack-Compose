@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
  */
 object Constant {
 
-    val dynamicIslandBackgroundShape = RoundedCornerShape(32.dp)
+    val dynamicIslandBackgroundShape = RoundedCornerShape(64.dp)
     val dynamicIslandBackgroundColor = Color.Black
 
     @Composable
@@ -27,6 +27,18 @@ object Constant {
     fun getMinIslandHeight(): Dp {
         val configuration = LocalConfiguration.current
         return (configuration.screenHeightDp / 18f).dp
+    }
+
+    @Composable
+    fun getScreenHeightDp(): Dp {
+        val configuration = LocalConfiguration.current
+        return configuration.screenHeightDp.dp
+    }
+
+    @Composable
+    fun getScreenWidthDp(): Dp {
+        val configuration = LocalConfiguration.current
+        return configuration.screenWidthDp.dp
     }
 
 }

@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammad.cengiztoru.dynamicisland.model.Notification
 import com.muhammad.cengiztoru.dynamicisland.ui.components.Notch
+import com.muhammad.cengiztoru.dynamicisland.ui.components.notification.phone_call.PhoneCallCollapsed
+import com.muhammad.cengiztoru.dynamicisland.ui.components.notification.phone_call.PhoneCallExpanded
 import com.muhammad.cengiztoru.dynamicisland.ui.util.Constant
 import com.muhammad.cengiztoru.dynamicisland.ui.util.extensions.noRippleClickable
 import kotlinx.coroutines.delay
@@ -28,14 +30,7 @@ import kotlin.random.Random
 
 //todo
 private val notificationList = listOf(
-    Notification.PhoneCall(
-        {
-            Text(
-                color = MaterialTheme.colors.onSurface,
-                text = "Phone Call Expanded Phone Call Expanded Phone Call Expanded Phone Call Expanded Phone Call Expanded Phone Call Expanded "
-            )
-        },
-        { Text(color = MaterialTheme.colors.onSurface, text = "Phone Call Collapsed") }),
+    Notification.PhoneCall({ PhoneCallExpanded() }, { PhoneCallCollapsed() }),
     Notification.MediaPlayer(
         {
             Text(
@@ -129,5 +124,5 @@ fun DynamicIsland(
 @Preview
 @Composable
 fun testPreview() {
-
+    DynamicIslandScreen()
 }
