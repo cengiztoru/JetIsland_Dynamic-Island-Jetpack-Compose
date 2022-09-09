@@ -3,6 +3,7 @@ package com.muhammad.cengiztoru.dynamicisland.ui.dynamic_island
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -12,10 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.muhammad.cengiztoru.dynamicisland.model.Notification
 import com.muhammad.cengiztoru.dynamicisland.ui.components.Notch
 import com.muhammad.cengiztoru.dynamicisland.ui.util.Constant
-import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 /**
@@ -50,12 +51,27 @@ fun getRandomNotification(): Notification {
 
 @Composable
 fun DynamicIslandScreen() {
-    Box(
+    Column(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        DynamicIsland {
-            Text(text = "Text")
+
+        var randomNotification by remember { mutableStateOf<Notification?>(null) }
+
+        DynamicIsland(
+            notification = randomNotification,
+        )
+
+        Button(
+            shape = RoundedCornerShape(32.dp),
+            modifier = Modifier.padding(30.dp, 30.dp, 30.dp, 100.dp),
+            onClick = { randomNotification = getRandomNotification() }
+        ) {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = "Send Random Notification", fontSize = 20.sp
+            )
         }
     }
 }
@@ -63,16 +79,33 @@ fun DynamicIslandScreen() {
 @Composable
 fun DynamicIsland(
     modifier: Modifier = Modifier,
-    isExpanded: Boolean = false,
-    isSecondAreaExist: Boolean = false,
-    content: @Composable () -> Unit
+    notification: Notification? = null,
 ) {
+    var showExpandedContent by remember { mutableStateOf(true) }
+
     Box(
-        modifier = Modifier
+        modifier = modifier
             .padding(8.dp)
+            .clip(Constant.dynamicIslandBackgroundShape)
+            .background(Constant.dynamicIslandBackgroundColor)
+            .defaultMinSize(Constant.getMinIslandWidth(), Constant.getMinIslandHeight())
+            .animateContentSize()
             .wrapContentSize()
     ) {
-        Notch()
+        if (notification == null) {
+            Notch()
+        } else {
+            Box(
+                modifier = Modifier
+                    .padding(16.dp)
+            ) {
+                if (showExpandedContent) {
+                    notification.expandedContent()
+                } else {
+                    notification.collapsedContent()
+                }
+            }
+        }
     }
 
 }
