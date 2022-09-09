@@ -5,12 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -62,18 +64,40 @@ fun DynamicIslandScreen() {
             notification = randomNotification,
         )
 
-        Button(
-            shape = RoundedCornerShape(32.dp),
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(30.dp, 30.dp, 30.dp, 100.dp),
-            onClick = {
-                notificationId++
-                randomNotification = getRandomNotification()
-            }
         ) {
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = "Send Random Notification", fontSize = 20.sp
-            )
+
+            Button(
+                onClick = {
+                    notificationId++
+                    randomNotification = null
+                },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+                shape = RoundedCornerShape(32.dp)
+            ) {
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text = "Remove notifications", fontSize = 20.sp
+                )
+            }
+            Spacer(modifier = Modifier.padding(30.dp))
+
+
+            Button(
+                shape = RoundedCornerShape(32.dp),
+                onClick = {
+                    notificationId++
+                    randomNotification = getRandomNotification()
+                }
+            ) {
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text = "Send Random Notification", fontSize = 20.sp
+                )
+            }
+
         }
     }
 }
