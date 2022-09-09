@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.muhammad.cengiztoru.dynamicisland.model.Notification
 import com.muhammad.cengiztoru.dynamicisland.ui.components.Notch
 import com.muhammad.cengiztoru.dynamicisland.ui.util.Constant
+import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 /**
@@ -57,16 +58,21 @@ fun DynamicIslandScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
+        var notificationId by remember { mutableStateOf(1) }
         var randomNotification by remember { mutableStateOf<Notification?>(null) }
 
         DynamicIsland(
+            notificationId = notificationId,
             notification = randomNotification,
         )
 
         Button(
             shape = RoundedCornerShape(32.dp),
             modifier = Modifier.padding(30.dp, 30.dp, 30.dp, 100.dp),
-            onClick = { randomNotification = getRandomNotification() }
+            onClick = {
+                notificationId++
+                randomNotification = getRandomNotification()
+            }
         ) {
             Text(
                 modifier = Modifier.padding(8.dp),
@@ -79,9 +85,10 @@ fun DynamicIslandScreen() {
 @Composable
 fun DynamicIsland(
     modifier: Modifier = Modifier,
+    notificationId: Int,
     notification: Notification? = null,
 ) {
-    var showExpandedContent by remember { mutableStateOf(true) }
+    var showExpandedContent by remember(notificationId) { mutableStateOf(true) }
 
     Box(
         modifier = modifier
@@ -101,6 +108,12 @@ fun DynamicIsland(
             ) {
                 if (showExpandedContent) {
                     notification.expandedContent()
+
+                    LaunchedEffect(true) {
+                        delay(1000)
+                        showExpandedContent = false
+                    }
+
                 } else {
                     notification.collapsedContent()
                 }
