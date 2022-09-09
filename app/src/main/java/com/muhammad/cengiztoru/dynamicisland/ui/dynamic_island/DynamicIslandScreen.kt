@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.muhammad.cengiztoru.dynamicisland.model.Notification
 import com.muhammad.cengiztoru.dynamicisland.ui.components.Notch
 import com.muhammad.cengiztoru.dynamicisland.ui.util.Constant
+import com.muhammad.cengiztoru.dynamicisland.ui.util.extensions.noRippleClickable
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -104,6 +105,7 @@ fun DynamicIsland(
         } else {
             Box(
                 modifier = Modifier
+                    .noRippleClickable { showExpandedContent = true }
                     .padding(16.dp)
             ) {
                 if (showExpandedContent) {
