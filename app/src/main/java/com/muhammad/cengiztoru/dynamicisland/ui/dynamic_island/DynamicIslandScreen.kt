@@ -31,7 +31,6 @@ import kotlin.random.Random
  * cengiztoru@gmail.com
  */
 
-//todo
 private val notificationList = listOf(
     Notification.PhoneCall({ PhoneCallExpanded() }, { PhoneCallCollapsed() }),
     Notification.MediaPlayer({ MediaPlayerExpanded() }, { MediaPlayerCollapsed() })

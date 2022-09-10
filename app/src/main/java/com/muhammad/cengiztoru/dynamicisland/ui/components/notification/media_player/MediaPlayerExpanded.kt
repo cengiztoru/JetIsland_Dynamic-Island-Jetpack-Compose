@@ -9,7 +9,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -53,16 +52,20 @@ fun MediaPlayerExpanded(
                 },
         )
 
-        Text("Lorem Ipsum", fontSize = 20.sp, modifier = Modifier.constrainAs(title) {
-            top.linkTo(image.top, margin = 4.dp)
-            start.linkTo(image.end, margin = 12.dp)
-        })
+        Text("Lorem Ipsum", fontSize = 20.sp,
+            color = Color.White,
+            modifier = Modifier.constrainAs(title) {
+                top.linkTo(image.top, margin = 4.dp)
+                start.linkTo(image.end, margin = 12.dp)
+            })
 
-        Text("Some desc", fontSize = 16.sp, modifier = Modifier.constrainAs(description) {
-            start.linkTo(title.start)
-            top.linkTo(title.bottom, margin = 4.dp)
-            bottom.linkTo(image.bottom, margin = 8.dp)
-        })
+        Text("Some desc", fontSize = 16.sp,
+            color = Color.White,
+            modifier = Modifier.constrainAs(description) {
+                start.linkTo(title.start)
+                top.linkTo(title.bottom, margin = 4.dp)
+                bottom.linkTo(image.bottom, margin = 8.dp)
+            })
 
         Icon(
             painterResource(id = R.drawable.ic_sound),
@@ -76,10 +79,12 @@ fun MediaPlayerExpanded(
             tint = Color.Magenta
         )
 
-        Text("0:37", fontSize = 14.sp, modifier = Modifier.constrainAs(passedTime) {
-            top.linkTo(image.bottom, margin = 16.dp)
-            start.linkTo(image.start)
-        })
+        Text("0:37", fontSize = 14.sp,
+            color = Color.White,
+            modifier = Modifier.constrainAs(passedTime) {
+                top.linkTo(image.bottom, margin = 16.dp)
+                start.linkTo(image.start)
+            })
 
 
         LinearProgressIndicator(
@@ -97,11 +102,13 @@ fun MediaPlayerExpanded(
             progress = 0.25F
         )
 
-        Text("-2:56", fontSize = 14.sp, modifier = Modifier.constrainAs(remainingTime) {
-            top.linkTo(passedTime.top)
-            bottom.linkTo(passedTime.bottom)
-            end.linkTo(parent.end)
-        })
+        Text("-2:56", fontSize = 14.sp,
+            color = Color.White,
+            modifier = Modifier.constrainAs(remainingTime) {
+                top.linkTo(passedTime.top)
+                bottom.linkTo(passedTime.bottom)
+                end.linkTo(parent.end)
+            })
 
         Icon(
             painterResource(id = R.drawable.ic_pause),
@@ -113,7 +120,7 @@ fun MediaPlayerExpanded(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            tint = MaterialTheme.colors.onSurface
+            tint = Color.White
         )
 
         Icon(
@@ -126,7 +133,7 @@ fun MediaPlayerExpanded(
                     bottom.linkTo(pause.bottom)
                     end.linkTo(pause.start, margin = 20.dp)
                 },
-            tint = MaterialTheme.colors.onSurface
+            tint = Color.White
         )
 
         Icon(
@@ -139,7 +146,7 @@ fun MediaPlayerExpanded(
                     bottom.linkTo(pause.bottom)
                     start.linkTo(pause.end, margin = 20.dp)
                 },
-            tint = MaterialTheme.colors.onSurface
+            tint = Color.White
         )
 
 
