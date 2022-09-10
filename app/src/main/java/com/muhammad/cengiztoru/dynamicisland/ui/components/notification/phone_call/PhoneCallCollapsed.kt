@@ -54,7 +54,7 @@ fun PhoneCallCollapsed(
         }
 
         Icon(
-            painterResource(id = R.drawable.ic_call_sound),
+            painterResource(id = R.drawable.ic_sound),
             "Call Sound",
             modifier = generalImageModifier,
             tint = Color.Green
