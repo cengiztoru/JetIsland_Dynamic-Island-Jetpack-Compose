@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muhammad.cengiztoru.dynamicisland.model.Notification
 import com.muhammad.cengiztoru.dynamicisland.ui.components.Notch
+import com.muhammad.cengiztoru.dynamicisland.ui.components.notification.media_player.MediaPlayerCollapsed
+import com.muhammad.cengiztoru.dynamicisland.ui.components.notification.media_player.MediaPlayerExpanded
 import com.muhammad.cengiztoru.dynamicisland.ui.components.notification.phone_call.PhoneCallCollapsed
 import com.muhammad.cengiztoru.dynamicisland.ui.components.notification.phone_call.PhoneCallExpanded
 import com.muhammad.cengiztoru.dynamicisland.ui.util.Constant
@@ -33,14 +34,7 @@ import kotlin.random.Random
 //todo
 private val notificationList = listOf(
     Notification.PhoneCall({ PhoneCallExpanded() }, { PhoneCallCollapsed() }),
-    Notification.MediaPlayer(
-        {
-            Text(
-                color = MaterialTheme.colors.onSurface,
-                text = "MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded MediaPlayer Expanded "
-            )
-        },
-        { Text(color = MaterialTheme.colors.onSurface, text = "MediaPlayer Collapsed") }),
+    Notification.MediaPlayer({ MediaPlayerExpanded() }, { MediaPlayerCollapsed() })
 )
 
 fun getRandomNotification(): Notification {
@@ -131,7 +125,7 @@ fun DynamicIsland(
                     notification.expandedContent()
 
                     LaunchedEffect(true) {
-                        delay(1000)
+                        delay(3000)
                         showExpandedContent = false
                     }
 
@@ -147,6 +141,6 @@ fun DynamicIsland(
 
 @Preview
 @Composable
-fun testPreview() {
+fun DynamicIslandScreenPreview() {
     DynamicIslandScreen()
 }
