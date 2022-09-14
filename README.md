@@ -6,6 +6,8 @@ When a notification arrive to the island it will shown with expanded content for
 Then the notification will goes to collapsed state.<br/>
 If user click a notification in the collapsed state the island will show expanded ui of the notification.
 
+![Dynamic Island Gif](https://user-images.githubusercontent.com/28221219/190113645-b00ea512-f6b5-4091-ba2d-6a87c42495c6.gif)
+
 
 https://user-images.githubusercontent.com/28221219/189500679-cb63e32a-3de9-489f-ab9d-6b3cc6ba8ea2.mp4
 
